@@ -173,49 +173,34 @@ let data = {
   };
 
 let  eventos = data.events
-let  fecha   = data.currentDate
+let  fecha  = data.currentDate
 
-console.log(eventos)
-console.log(fecha)
-
-for (let i = 0; i < eventos.length; i++) {
-    console.log(eventos[i].date);
-}
-
-function mostraCards(eventos) {
-    let body = ``;
-    const tagToUpdate = document.getElementById("targetas");
-    console.log("tagToUpdate", tagToUpdate);
-    for (let i = 0; i < eventos.length; i++) {
-        body += `
-                <div class= "col-xs-12 col-sm-6 col-md-4 col-lg-3 card m-1" style="width: 18rem;"> 
-                  <img  src = ${eventos[i].image} alt="#">
-                  <h4 class="card-title text-center">${eventos[i].name}</h4>
-                  <p class="card-text text-center">${eventos[i].description}</p>
-                  <div class="row precio-Info">
-                        <div class="col-6">
-                            <p>Price $ ${eventos[i].price}</p>
-                        </div>
-                        <div class="col-6">
-                            <a href="Ficha.html" class="boton-ficha">Info</a>
-                        </div>
-                  </div>
+function EventFut (array){
+  let arrayDeEventos = array
+  
+  let body = ``;
+  const tagToUpdate = document.getElementById("targFut");
+  console.log("tagToUpdate", tagToUpdate);
+  for (let i = 0; i < arrayDeEventos.length; i++) {
+      if (fecha<arrayDeEventos[i].date){
+      body += `
+              <div class= "col-xs-12 col-sm-6 col-md-4 col-lg-3 card m-1" style="width: 18rem;"> 
+                <img  src = ${arrayDeEventos[i].image} alt="#">
+                <h4 class="card-title text-center">${arrayDeEventos[i].name}</h4>
+                <p class="card-text text-center">${arrayDeEventos[i].description}</p>
+                <div class="row precio-Info">
+                      <div class="col-6">
+                          <p>Price $ ${arrayDeEventos[i].price}</p>
+                      </div>
+                      <div class="col-6">
+                          <a href="Ficha.html" class="boton-ficha">Info</a>
+                      </div>
                 </div>
-        `;
-    }
-    tagToUpdate.innerHTML = body;
+              </div>
+      `;
+    }    
+  }
+  tagToUpdate.innerHTML = body;
 }
 
-mostraCards(eventos);
-
-
-
-
-
-
-
-
-
-
-
-
+EventFut(eventos)
